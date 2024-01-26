@@ -11,8 +11,8 @@ import { useTheme } from "@emotion/react";
 import { Box, Button, Stack, Typography } from "@mui/material";
 // Make Data For Doing Loop By Using Map
 const mySlider = [
-  { id: 1, link: "src/Images/banner-15.jpg", title: "men" },
-  { id: 2, link: "src/Images/banner-25.jpg", title: "women" },
+  { id: 1, link: "./Images/banner-15.jpg", title: "men" },
+  { id: 2, link: "./Images/banner-25.jpg", title: "women" },
 ];
 
 function SwiperSliderOne() {

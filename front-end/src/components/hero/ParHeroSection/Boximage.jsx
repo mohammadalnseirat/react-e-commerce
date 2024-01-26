@@ -8,7 +8,7 @@ function BoxImage() {
       <Box sx={{ display: { xs: "none", md: "block", minWidth: "26.6%" } }}>
         {/* Start Box Image-1 */}
         <Box sx={{ position: "relative" }}>
-          <img width={"100%"} src="src\Images\banner-17.jpg" />
+          <img width={"100%"} src="./Images/banner-17.jpg" />
           <Stack
             sx={{
               position: "absolute",
@@ -60,7 +60,7 @@ function BoxImage() {
 
         {/* Start Box Image-2 */}
         <Box sx={{ position: "relative" }}>
-          <img width={"100%"} src="src\Images\banner-16.jpg" />
+          <img width={"100%"} src="./Images/banner-16.jpg" />
           <Stack
             sx={{
               position: "absolute",

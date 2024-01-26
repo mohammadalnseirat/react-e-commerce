@@ -1,7 +1,12 @@
 import { AddShoppingCartOutlined } from "@mui/icons-material";
 import { Box, Button, Stack, Typography } from "@mui/material";
+import { useState } from "react";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
-function ProductDetails() {
+function ProductDetails({ clickedProduct }) {
+  const [selectedImage, setselectedImage] = useState(0);
+
   return (
     <Box
       sx={{
@@ -12,21 +17,29 @@ function ProductDetails() {
       }}
     >
       <Box display={"flex"}>
-        <img width={300} src="src\Images\1.jpg" alt="" />
+        <img
+          width={360}
+          src={
+            clickedProduct.attributes.productImage.data[selectedImage]
+              .attributes.url
+          }
+          alt=""
+        />
       </Box>
 
-      <Box sx={{ textAlign: { xs: "center", sm: "left" } }}>
-        <Typography variant="h5">Women Fashiton</Typography>
+      <Box sx={{ py: 2, textAlign: { xs: "center", sm: "left" } }}>
+        <Typography variant="h5">
+          {clickedProduct.attributes.productTitle}
+        </Typography>
         <Typography
           variant="h6"
           sx={{ my: 0.4, fontSize: "22px" }}
           color={"crimson"}
         >
-          12.99$
+          ${clickedProduct.attributes.productPrice}
         </Typography>
         <Typography variant="body1">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+          {clickedProduct.attributes.productDescription}
         </Typography>
 
         <Stack
@@ -35,18 +48,45 @@ function ProductDetails() {
           my={2}
           sx={{ justifyContent: { xs: "center", sm: "left" } }}
         >
-          {["src/Images/1.jpg", "src/Images/2.png"].map((item) => {
-            return (
-              <img
-                key={item}
-                style={{ borderRadius: 3 }}
-                width={90}
-                height={100}
-                src={item}
-                alt=""
-              />
-            );
-          })}
+          <ToggleButtonGroup
+            value={selectedImage}
+            exclusive
+            sx={{
+              ".Mui-selected": {
+                border: "1px solid royalblue !important",
+                borderRadius: "5px !important",
+                opacity: "1",
+                backgroundColor: "initial",
+              },
+            }}
+          >
+            {clickedProduct.attributes.productImage.data.map((item, index) => {
+              return (
+                <ToggleButton
+                  key={item.id}
+                  value={index}
+                  sx={{
+                    width: "110px",
+                    height: "110px",
+                    p: "0",
+                    mx: "1",
+                    opacity: "0.5",
+                  }}
+                >
+                  <img
+                    onClick={() => {
+                      setselectedImage(index);
+                    }}
+                    style={{ borderRadius: 3 }}
+                    width={"100%"}
+                    height={"100%"}
+                    src={item.attributes.url}
+                    alt=""
+                  />
+                </ToggleButton>
+              );
+            })}
+          </ToggleButtonGroup>
         </Stack>
         <Button
           sx={{ textTransform: "capitalize", mb: { xs: 1, sm: 0 } }}
